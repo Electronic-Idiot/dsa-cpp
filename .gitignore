@@ -1,0 +1,14 @@
+# Binaries and object files
+*.o
+*.out
+*.exe
+bin/
+a.out
+
+# Editor and OS junk
+.vscode/*
+!.vscode/tasks.json
+!.vscode/settings.json
+.cache/
+compile_commands.json
+.DS_Store
