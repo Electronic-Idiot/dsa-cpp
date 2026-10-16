@@ -1,0 +1,49 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build & Run C++ DSA",
+      "type": "shell",
+      "command": "g++ -std=c++20 -O2 -Wall -Wextra -Wshadow -fsanitize=address,undefined \"${file}\" -o \"${fileDirname}/${fileBasenameNoExtension}.out\" && \"${fileDirname}/${fileBasenameNoExtension}.out\"",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "New DSA Problem",
+      "type": "shell",
+      "command": "bash scripts/new_problem.sh ${input:folderPrefix} \"${input:problemName}\"",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "folderPrefix",
+      "type": "promptString",
+      "description": "Folder prefix (e.g., 01 for Arrays, 02 for Two Pointers):",
+      "default": "01"
+    },
+    {
+      "id": "problemName",
+      "type": "promptString",
+      "description": "Problem Name (e.g., Two Sum or 3Sum):"
+    }
+  ]
+}

@@ -29,15 +29,15 @@ cat << TEMPLATE > "$FULL_PATH"
  * Complexity:
  *   - Time:  O()
  *   - Space: O()
- *
- * Intuition:
- * 
  */
 
 #include <iostream>
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
+#include "../scripts/dsa_utils.hpp" // Utility parser
+
+using namespace std;
 
 class Solution {
 public:
@@ -47,12 +47,22 @@ public:
 };
 
 int main() {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(NULL);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
     Solution sol;
-    // Add sample run / assertion here
-    std::cout << "Test passed.\n";
+    
+    // Example Parsers:
+    // vector<int> nums = dsa::parseVector("[2,7,11,15]");
+    // vector<vector<int>> mat = dsa::parseMatrix("[[1,2],[3,4]]");
+    // ListNode* head = dsa::parseLinkedList("[1,2,3,4,5]");
+    
+    sol.solve();
+    
+    // Example Printers:
+    // dsa::printVector(nums);
+    // dsa::printMatrix(mat);
+    // dsa::printLinkedList(head);
 
     return 0;
 }
