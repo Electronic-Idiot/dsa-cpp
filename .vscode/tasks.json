@@ -19,9 +19,7 @@
       },
       "problemMatcher": {
         "owner": "cpp",
-        "fileLocation": [
-          "autoDetect"
-        ],
+        "fileLocation": "autoDetect",
         "pattern": {
           "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error|note):\\s+(.*)$",
           "file": 1,
