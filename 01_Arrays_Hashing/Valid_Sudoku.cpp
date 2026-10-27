@@ -1,10 +1,17 @@
 /**
+// PIVOT: store the 3 required conditions in validity for all 3 different 2d
+arrays(one of the axes contain the numbers and other whether they already
+satisfy the condition)
+//thus when collision happens->two update for the same value->condition for
+failure
+// SYNTAX:if (rowCheck[i][curr] || colCheck[j][curr] ||
+            subMatrix[subMatrixCalc][curr]) {return false;}
  * Problem: Valid_Sudoku
  * Platform: LeetCode / GfG
  * Pattern:
  * Complexity:
- *   - Time:  O()
- *   - Space: O()
+ *   - Time:  O(N^2)
+ *   - Space: O(N^2)
  */
 
 #include "../scripts/dsa_utils.hpp" // Utility parser
@@ -21,10 +28,9 @@ public:
     // Implementation
     bool rowCheck[9][10] = {false};
     bool colCheck[9][10]{false}; // column 0 is unused ,1-9 is useful to
-                                 // us,avoid extra manipluation this way,
-    bool subMatrix[9][10] = {
-        false}; // array index and element value matches this way
-
+    // us,avoid extra manipluation this way,
+    // array index and element value matches this way
+    bool subMatrix[9][10] = {false};
     for (int i = 0; i < 9; i++) {
       for (int j = 0; j < 9; j++) {
         if (board[i][j] == '.')
@@ -54,16 +60,10 @@ int main() {
 
   // Example Parsers:
   // vector<int> nums = dsa::parseVector("[2,7,11,15]");
-  vector<vector<int>> mat = dsa::parseMatrix(
-      "[[" 1 "," 2 ",".","."," 3 ",".",".",".","."],[" 4 ",".","."," 5 ",".","
-          .",".",".","."],["."," 9 "," 8 ",".",".",".",".","."," 3 "],[" 5 ","
-          .",".","."," 6 ",".",".","."," 4 "],[".",".","."," 8 ","."," 3 ",".","
-          ."," 5 "],[" 7 ",".",".","."," 2 ",".",".","."," 6 "],[".",".",".","
-          .",".","."," 2 ",".","."],[".",".","."," 4 "," 1 "," 9 ",".","
-          ."," 8 "],[".",".",".","."," 8 ",".","."," 7 "," 9 "]]");
+  //   vector<vector<char>> mat = dsa::parseMatrix();
   // ListNode* head = dsa::parseLinkedList("[1,2,3,4,5]");
 
-  sol.solve(mat);
+  //   sol.solve();// test case in neet code needs to sanitized to be used here
 
   // Example Printers:
   // dsa::printVector(nums);
