@@ -1,10 +1,34 @@
 /**
+//CODE REQUIRES FURTHER OPTIMIZATIONS AND POLISH
+// PIVOT:Use the principle of sliding window,anchor is the starting poin the
+window(RADAR) and scout travels away from the anchor ,increasing the range of
+the radar.Once the condition that we need is met the scout stops and anchor
+moves forward by one space,this step should done carefully as once the anchor
+moves forward threr is no going back and whatever it left is considered
+processed completely
+In this problem the scout travels forward until it meets a duplicate (Radar
+grows in this stage) Once the scout meets a duplicate, we are done with the
+place the anchor currently sitting at thus we move the anchor forward one space.
+// SYNTAX:
+ while (scout != s.size()) {
+      if (window.find(s[scout]) == window.end()) {
+        window.insert(s[scout]);
+        maxLen = max(maxLen, scout - anchor + 1);
+        scout++;
+      } else {
+        while (window.count(s[scout]) != 0) {
+          window.erase(s[anchor]);
+          anchor++;
+        }
+        window.insert(s[scout]); // lines part of both branches,make it common
+        scout++;
+      }
  * Problem: Longest Substring Without Repeating Characters
  * Platform: LeetCode / GfG
- * Pattern:
+ * Pattern: Hash Table, Sliding Window, String
  * Complexity:
- *   - Time:  O()
- *   - Space: O()
+ *   - Time:  O(N)
+ *   - Space: O(M) where 'M' is the number of unique characters in the string
  */
 
 #include "../scripts/dsa_utils.hpp" // Utility parser
@@ -34,7 +58,7 @@ public:
           window.erase(s[anchor]);
           anchor++;
         }
-        window.insert(s[scout]);
+        window.insert(s[scout]); // lines part of both branches,make it common
         scout++;
       }
     }
