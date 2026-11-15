@@ -21,6 +21,15 @@ public:
     // Implementation
     // build a fixed sliding window because we know the size of the valid
     // substring
+    // TODO: needs to understand the movement of the window after the substring
+    // fully processed
+    // need to drill in the curr amensia issue
+    // tried to replace the fatal break statement with continue but not the
+    // right approach ,needs review
+    // can replace the curr counter with the operator overloading the operator==
+    // to compare the unordered map (also vectors)
+    // VISUALISE THE FIXED SIZE WINDOW STATE MACHINE TO FIND THE SOLUTION
+
     unordered_map<char, int> count1;
     for (char c : s1) {
       count1[c]++;
@@ -28,19 +37,41 @@ public:
     int anchor = 0;
     int scout = s1.size() - 1;
     unordered_map<char, int> count2;
-    for (int i = 0; i <= (s2.size() - s1.size()) + 1; i++) {
+    int curr = 0;
+    // check if s2 is larger than s1
+
+    while (scout < s2.size() - 1) {
       int radar = anchor;
-      int curr = 0;
-      while (radar <= scout) {
-        char c = s2[radar];
+      if (anchor == 0) {
+        while (radar <= scout) {
+          char c = s2[radar];
+          count2[c]++;
+          if (count1[c] < count2[c]) {
+            // count2[anchor]--;
+            // break;
+            count2[s2[anchor]]--;
+            anchor++;
+            scout++;
+            continue;
+          }
+          if (count1[c] == count2[c]) {
+            curr++;
+          }
+          radar++;
+        }
+        // anchor++;
+        // scout++;
+      } else {
+        count2[s2[anchor - 1]]--;
+        char c = s2[scout];
         count2[c]++;
         if (count1[c] < count2[c]) {
-          break;
+          // count2[anchor]--;
+          continue;
         }
         if (count1[c] == count2[c]) {
           curr++;
         }
-        radar++;
       }
       if (curr == s1.size())
         return true;
